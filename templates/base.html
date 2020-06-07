@@ -63,7 +63,7 @@
 					<li {% if 'projects' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'projects' %}">Projects</a></li>
 					<li {% if 'about' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'about' %}">About</a></li>
 					<li {% if 'services' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'services' %}">Services</a></li>
-					<li {% if 'blog' in request.path %} class="colorlib-active" {% endif %}><a href="">Blog</a></li>
+					<li {% if 'blog' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'blogs' %}">Blog</a></li>
 					<li {% if 'contact' in request.path %} class="colorlib-active" {% endif %}><a href="">Contact</a></li>
 				</ul>
 			</nav>
