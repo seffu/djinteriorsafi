@@ -14,81 +14,51 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-1.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Renovating National Gallery</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-2.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Wordpress for a Beginner</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-3.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Make website from scratch</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+                        {% if blogs %}
+                            {% for blog in blogs %}
+                                <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="blog-entry">
+                                        <a href="{% url 'blog' blog.id %}" class="blog-img"><img src="{{blog.blog_image.url}}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+                                        <div class="desc">
+                                            <span><small>{{blog.blog_date}}</small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
+                                            <h3><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h3>
+                                            <p>{{blog.description | truncatechars:100}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-md-12">
+                                <p>No published blogs yet</p>
+                            </div>
+                        {% endif %}
 
-					<div class="row">
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-4.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Renovating National Gallery</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-5.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Wordpress for a Beginner</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="blog-entry">
-								<a href="blog.html" class="blog-img"><img src="{% static 'images/blog-6.jpg' %}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
-								<div class="desc">
-									<span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
-									<h3><a href="blog.html">Make website from scratch</a></h3>
-									<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                            {% if blogs.has_other_pages %}
 							<ul class="pagination">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">&raquo;</a></li>
+                                {% if blogs.has_previous %}
+								    <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                    <li class="disabled"><a href="#">&laquo;</a></li>
+                                {% endif %}
+
+                                {% for i in blogs.paginator.page_range %}
+                                    {% if blogs.number == i %}
+                                    <li class="active"><a href="?page={{i}}">{{i}}</a></li>
+                                    {% else %}
+                                    <li><a href="?page={{i}}">{{i}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if blogs.has_next %}
+								    <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                    <li class="disabled"><a href="#">&raquo;</a></li>
+                                {% endif %}
 							</ul>
+                            {% endif %}
 						</div>
 					</div>
 				</div>

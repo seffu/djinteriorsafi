@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from apps.blogs.models import Blog
 
 
 def index(request):
-    return render(request, 'pages/index.html')
+    blogs = Blog.objects.order_by('blog_date')[:3]
+    context = {'blogs': blogs}
+    return render(request, 'pages/index.html', context)
 
 
 def about(request):
