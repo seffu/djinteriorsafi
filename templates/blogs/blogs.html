@@ -13,14 +13,14 @@
 							<h2 class="colorlib-heading">Read Blog</h2>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row display-flex">
                         {% if blogs %}
                             {% for blog in blogs %}
                                 <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
                                     <div class="blog-entry">
                                         <a href="{% url 'blog' blog.id %}" class="blog-img"><img src="{{blog.blog_image.url}}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                         <div class="desc">
-                                            <span><small>{{blog.blog_date}}</small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
+                                            <span><small>{{blog.blog_date | date:"DATE_FORMAT"}}</small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
                                             <h3><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h3>
                                             <p>{{blog.description | truncatechars:100}}</p>
                                         </div>

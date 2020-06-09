@@ -231,97 +231,32 @@
 							<h2 class="colorlib-heading animate-box">Recent Work</h2>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-1.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 01</a></h3>
-										<span>Building</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-2.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 02</a></h3>
-										<span>House, Apartment</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-3.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 03</a></h3>
-										<span>Dining Room</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-4.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 04</a></h3>
-										<span>House, Building</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-5.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 05</a></h3>
-										<span>Condo, Pad</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url({% static 'images/img-6.jpg' %});">
-								<div class="desc">
-									<div class="con">
-										<h3><a href="work.html">Work 06</a></h3>
-										<span>Table, Chairs</span>
-										<p class="icon">
-											<span><a href="#"><i class="icon-share3"></i></a></span>
-											<span><a href="#"><i class="icon-eye"></i> 100</a></span>
-											<span><a href="#"><i class="icon-heart"></i> 49</a></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="row display-flex">
+					<div class="row row-bottom-padded-md">
+                        {% if projects %}
+                            {% for project in projects %}
+                                <div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
+                                    <div class="project" style="background-image: url({% static 'images/img-2.jpg' %});">
+                                        <div class="desc">
+                                            <div class="con">
+                                                <h3><a href="work.html">{{project.title}}</a></h3>
+                                                <span>{{project.location}}</span>
+                                                <p class="icon">
+                                                    <span><a href="#"><i class="icon-share3"></i></a></span>
+                                                    <span><a href="#"><i class="icon-eye"></i> {{project.project_date | date:"DATE_FORMAT"}}</a></span>
+                                                    {#<span><a href="#"><i class="icon-heart"></i> 49</a></span>#}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% else %}
+                                <div class="col-md-12">
+                                    <p>No published projects yet</p>
+                                </div>
+                        {% endif %}
+					</div>
 					</div>
 				</div>
 			</div>
@@ -334,14 +269,14 @@
 							<h2 class="colorlib-heading">Recent Blogs</h2>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row display-flex">
                         {% if blogs %}
                             {% for blog in blogs %}
                                 <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
                                     <div class="blog-entry">
                                         <a href="{% url 'blog' blog.id %}" class="blog-img"><img src="{{blog.blog_image.url}}" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                         <div class="desc">
-                                            <span><small>{{blog.blog_date}}</small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
+                                            <span><small>{{blog.blog_date | date:"DATE_FORMAT"}}</small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
                                             <h3><a href="{% url 'blog' blog.id %}">{{ blog.title }}</a></h3>
                                             <p>{{blog.description | truncatechars:100}}</p>
                                         </div>

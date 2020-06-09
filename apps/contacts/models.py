@@ -7,7 +7,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=200, blank=False)
     email = models.EmailField(blank=False)
     phone = models.CharField(max_length=200, blank=True)
-    title = models.CharField(max_length=200, blank=False)
+    subject = models.CharField(max_length=200, blank=False)
     message = models.TextField(blank=False)
     contact_date = models.DateTimeField(default=datetime.now, blank=True)
 

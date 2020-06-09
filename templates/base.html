@@ -28,9 +28,10 @@
 
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- Lightbox.css -->
+	<link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}
-">
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	<!-- Flexslider  -->
@@ -63,7 +64,7 @@
 					<li {% if 'projects' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'projects' %}">Projects</a></li>
 					<li {% if 'about' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'about' %}">About</a></li>
 					<li {% if 'services' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'services' %}">Services</a></li>
-					<li {% if 'blog' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'blogs' %}">Blog</a></li>
+					<li {% if 'blog' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'blogs' %}">Blogs</a></li>
 					<li {% if 'contact' in request.path %} class="colorlib-active" {% endif %}><a href="{% url 'contacts' %}">Contact Us</a></li>
 				</ul>
 			</nav>
@@ -124,6 +125,38 @@
 
 	<!-- MAIN JS -->
 	<script src="{% static 'js/main.js' %}"></script>
+    <!-- LIGHTBOX JS -->
+	<script src="{% static 'js/lightbox.js' %}"></script>
 
+
+{#    <!-- GetButton.io widget -->#}
+{#        <script type="text/javascript">#}
+{#            (function () {#}
+{#                var options = {#}
+{#                    whatsapp: "+254753604452", // WhatsApp number#}
+{#                    call_to_action: "Message us", // Call to action#}
+{#                    position: "right", // Position may be 'right' or 'left'#}
+{#                };#}
+{#                var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;#}
+{#                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';#}
+{#                s.onload = function () { WhWidgetSendButton.init(host, proto, options); };#}
+{#                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);#}
+{#            })();#}
+{#        </script>#}
+{#        <!-- /GetButton.io widget -->#}
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5eddd69a9e5f6944229018e1/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 	</body>
 </html>
