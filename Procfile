@@ -1,1 +1,1 @@
-web: gunicorn djinteriorsafi.wsgi --log-file
+web: gunicorn djinteriorsafi.wsgi --log-file -
