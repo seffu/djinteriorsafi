@@ -1,0 +1,30 @@
+#header{
+        background: #2C2C2C;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: #25359C;
+    color: #fff;
+}
+
+#branding h1 {
+    padding: 0;
+    margin: 0 20px 0 0;
+    font-weight: 300;
+    font-size: 24px;
+    color: #ffc300;
+}
+
+div.breadcrumbs {
+    background: #6678e8;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #c4dce8;
+    text-align: left;
+}
